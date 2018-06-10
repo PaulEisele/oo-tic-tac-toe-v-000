@@ -24,20 +24,20 @@ def position_taken?(location)
   board[location] != " " && board[location] != ""
 end
 
-def valid_move?(board, index)
-  index.between?(0,8) && !position_taken?(board, index)
+def valid_move?(index)
+  index.between?(0,8) && !position_taken?(index)
 end
 
-def turn(board)
+def turn
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index, current_player(board))
+  if valid_move?(index)
+    move(index, current_player)
   else
-    turn(@board)
+    turn
   end
-  display_board(@board)
+  display_board
 end
 
 def current_player
@@ -49,21 +49,21 @@ def turn_count
 end
 
 def play
-  until over?(@board)
-    turn(@board)
+  until over?
+    turn
   end
-    if won?(@board)
-      winner(@board) == "X" || winner(@board) == "O"
-        puts "Congratulations #{winner(board)}!"
-    elsif draw?(@board)
+    if won?
+      winner == "X" || winner == "O"
+        puts "Congratulations #{winner}!"
+    elsif draw?
       puts "Cat's Game!"
     end
 end
 
 
 # Helper Method
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
+def position_taken?(index)
+  !(@board[index].nil? || @board[index] == " ")
 end
 
 # Define your WIN_COMBINATIONS constant
@@ -78,7 +78,7 @@ WIN_COMBINATIONS = [
   [2, 4, 6]
 ]
 
-def won? (board)
+def won?
   WIN_COMBINATIONS.detect do |win_combination|
 
   win_index_1 = win_combination[0]
@@ -99,36 +99,32 @@ def won? (board)
   end
 end
 
-def full?(board)
-  if board.detect {|i| i == " " || i == nil}
+def full?
+  if @board.detect {|i| i == " " || i == nil}
     return false
   else
     return true
   end
 end
 
-def draw? (board)
-  if !won?(board) && full?(board)
+def draw?
+  if !won? && full?
     return true
   else
     return false
   end
 end
 
-def over? (board)
-  if won?(board) || draw?(board)
+def over?
+  if won? || draw?
     return true
   else
     return false
   end
 end
 
-def winner(board)
-  if win_combination = won?(board)
-    board[win_combination.first]
+def winner
+  if win_combination = won?
+    @board[win_combination.first]
   end
-end
-
-
-
 end
