@@ -1,7 +1,7 @@
 class TicTacToe
 
-def initialize(board= nil)
-  @board= board || array.new(9, " ")
+def initialize
+  @board= Array.new(9, " ")
 end
 
 def display_board
@@ -16,7 +16,7 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, current_player='x')
+def move(board, index, current_player = "x")
   board[index] = current_player
 end
 
