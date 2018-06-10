@@ -128,3 +128,4 @@ def winner
     @board[win_combination.first]
   end
 end
+end
