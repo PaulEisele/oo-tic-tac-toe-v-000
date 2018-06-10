@@ -49,9 +49,15 @@ def turn_count
 end
 
 def play
-  until over? == true
+  until over?
     turn
   end
+    if won?
+      winner == "X" || winner == "O"
+        puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cat's Game!"
+    end
 end
 
 # Helper Method
