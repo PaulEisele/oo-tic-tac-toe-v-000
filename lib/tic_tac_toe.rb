@@ -49,17 +49,9 @@ def turn_count
 end
 
 def play
-  until over?
+  until over? == true
     turn
   end
-    if won?
-      winner == "X" || winner == "O"
-        puts "Congratulations #{winner}!"
-    elsif draw?
-      puts "Cat's Game!"
-    end
-end
-
 
 # Helper Method
 def position_taken?(index)
