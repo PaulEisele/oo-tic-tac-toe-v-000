@@ -40,11 +40,11 @@ def turn(board)
   display_board(@board)
 end
 
-==def current_player
+def current_player
     turn_count % 2 == 0 ? "X" : "O"
 end
 
-==def turn_count
+def turn_count
     @board.count{|token| token == "X" || token == "O"}
 end
 
